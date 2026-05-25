@@ -1,0 +1,5 @@
+{
+  "filename": "login.py",
+  "language": "python",
+  "code": "password = \"admin123\"\napi_key = \"sk_test_123456789\"\nquery = \"SELECT * FROM users WHERE name = \" + username\ndebug = True\nimport hashlib\nhashlib.md5(b\"test\")"
+}
