@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevGuard AI</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <nav class="nav">
+        <div class="brand">
+          <div class="brand-mark">DG</div>
+          <div>
+            <p class="eyebrow">AI Code Security Reviewer</p>
+            <h1>DevGuard AI</h1>
+          </div>
+        </div>
+        <div class="nav-actions">
+          <a href="/docs" target="_blank" class="ghost-link">API Docs</a>
+          <a href="https://github.com/FluxKnight/DevGuard-AI" target="_blank" class="ghost-link">GitHub</a>
+        </div>
+      </nav>
+
+      <section class="hero-grid">
+        <div>
+          <div class="status-pill">
+            <span class="dot"></span>
+            Backend online
+          </div>
+          <h2>Scan code before it becomes a security problem.</h2>
+          <p class="hero-copy">
+            Paste source code or upload a local file. DevGuard AI detects hardcoded secrets,
+            SQL injection patterns, unsafe shell execution, weak hashes, debug configs, and risky code patterns.
+          </p>
+          <div class="hero-buttons">
+            <button id="scrollToScanner" class="primary-btn">Start Review</button>
+            <button id="loadSampleBtn" class="secondary-btn">Load Demo Code</button>
+          </div>
+        </div>
+
+        <div class="score-preview">
+          <div class="preview-header">
+            <span>Risk Engine</span>
+            <span class="mini-badge">Rule-based MVP</span>
+          </div>
+          <div class="radar-circle">
+            <div>
+              <strong id="heroScore">0</strong>
+              <span>/100</span>
+            </div>
+          </div>
+          <p id="heroRiskText">Waiting for scan</p>
+        </div>
+      </section>
+    </header>
+
+    <main id="scanner" class="main-grid">
+      <section class="panel scanner-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Input</p>
+            <h3>Code Review</h3>
+          </div>
+          <button id="clearBtn" class="small-btn">Clear</button>
+        </div>
+
+        <div class="form-grid">
+          <label>
+            Filename
+            <input id="filenameInput" value="login.py" placeholder="login.py" />
+          </label>
+
+          <label>
+            Language
+            <select id="languageInput">
+              <option value="python">Python</option>
+              <option value="javascript">JavaScript</option>
+              <option value="typescript">TypeScript</option>
+              <option value="cpp">C++</option>
+              <option value="java">Java</option>
+              <option value="php">PHP</option>
+              <option value="go">Go</option>
+              <option value="rust">Rust</option>
+              <option value="unknown">Unknown</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="upload-box">
+          <input id="fileInput" type="file" />
+          <span>Upload source file</span>
+          <small>.py, .js, .ts, .cpp, .java, .php, .env, .txt</small>
+        </label>
+
+        <label class="code-label">
+          Source Code
+          <textarea id="codeInput" spellcheck="false" placeholder="Paste code here..."></textarea>
+        </label>
+
+        <div class="action-row">
+          <button id="scanBtn" class="primary-btn full">Analyze Code</button>
+          <button id="historyBtn" class="secondary-btn">Load History</button>
+        </div>
+      </section>
+
+      <section class="panel result-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Output</p>
+            <h3>Security Result</h3>
+          </div>
+          <span id="reviewIdBadge" class="mini-badge">No review yet</span>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">⌁</div>
+          <h4>No scan result yet</h4>
+          <p>Paste code and click Analyze Code. Findings will appear here.</p>
+        </div>
+
+        <div id="resultContent" class="hidden">
+          <div class="risk-card">
+            <div>
+              <p class="eyebrow">Risk Level</p>
+              <h4 id="riskLevel">LOW</h4>
+            </div>
+            <div class="score-ring">
+              <strong id="scoreValue">0</strong>
+              <span>/100</span>
+            </div>
+          </div>
+
+          <div class="summary-box">
+            <p id="summaryText"></p>
+          </div>
+
+          <div class="findings-header">
+            <h4>Findings</h4>
+            <button id="markdownBtn" class="small-btn">Open Markdown Report</button>
+          </div>
+
+          <div id="findingsList" class="findings-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <section class="panel history-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Database</p>
+          <h3>Review History</h3>
+        </div>
+        <span class="mini-badge">SQLite-backed</span>
+      </div>
+      <div id="historyList" class="history-list">
+        <p class="muted">Click Load History to fetch stored reviews.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Built with FastAPI, SQLAlchemy, SQLite, and a rule-based security scanner.</p>
+    </footer>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>

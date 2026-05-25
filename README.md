@@ -93,3 +93,24 @@ https://your-render-service-url.onrender.com/docs
 DevGuard AI is my backend-focused AI engineering and cybersecurity project. It analyzes source code for common security risks, explains issues in human language, and generates safer recommendations.
 
 I built it to show that I can design APIs, structure backend services, create rule-based analysis systems, and apply cybersecurity thinking to developer tools.
+
+
+## Frontend UI
+
+DevGuard AI includes a built-in frontend interface served by FastAPI.
+
+After deployment, open:
+
+```txt
+https://your-render-service-url.onrender.com/ui
+```
+
+The UI supports:
+
+- Pasting code
+- Uploading local code files
+- Running a security review
+- Viewing risk score and risk level
+- Reading findings and recommendations
+- Opening markdown reports
+- Loading review history
